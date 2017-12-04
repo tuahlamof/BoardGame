@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_role"
+        title="Role"
+        icon="@drawable/ic_home_black_24dp"
+        barColorWhenSelected="#FE3D81"
+        />
+    <tab
+        id="@+id/tab_game"
+        title="Game"
+        icon="@drawable/ic_home_black_24dp"
+        barColorWhenSelected="#5D3C35"
+        />
+</tabs>
