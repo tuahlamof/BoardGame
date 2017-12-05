@@ -119,25 +119,51 @@ public class EchoWebSocketListener extends WebSocketListener {
                 //play music and end game
             } else if (type.equals("guardRound")) {
                 status = "guardRound";
+                if (UserInfo.getUserInstance().getHost()) {
+                    Log.d("myprocess", "guard");
+                    //SoundPlayer.getInstance().playMusic("guard");
+                }
             } else if (type.equals("werewolfRound")) {
                 status = "werewolfRound";
-            } else if (type.equals("killedUser") && UserInfo.getUserInstance().getRoleCode() == 4) {
-                status = "witchRound";
-                JSONObject dataJson = responseJson.getJSONObject("data");
-                int deadId = dataJson.getInt("id");
-                Message msg = GameFragment.getmHandler().obtainMessage();
-                msg.what = deadId;
-                msg.sendToTarget();
-            } else if (type.equals("witchRound") && UserInfo.getUserInstance().getRoleCode() == 4) {
-                status = "witchRound";
-                String subRound = responseJson.getJSONObject("data").getString("round");
-                if (subRound.equals("witchPoisonRound")) {
+                Log.d("myprocess", "werewolf");
+                if (UserInfo.getUserInstance().getHost()) {
+                    SoundPlayer.getInstance().playMusic("werewolf");
+                }
+            } else if (type.equals("killedUser")) {
+                Log.d("myprocess", "killed");
+                if (UserInfo.getUserInstance().getHost()) {
+                    SoundPlayer.getInstance().playMusic("witch_save");
+                }
+                if (UserInfo.getUserInstance().getRoleCode() == 4) {
+                    status = "witchRound";
+                    JSONObject dataJson = responseJson.getJSONObject("data");
+                    int deadId = dataJson.getInt("id");
                     Message msg = GameFragment.getmHandler().obtainMessage();
-                    msg.what = 100000;
+                    msg.what = deadId;
                     msg.sendToTarget();
                 }
-            } else if (type.equals("prophetRound") && UserInfo.getUserInstance().getRoleCode() == 3) {
-                status = "prophetRound";
+            } else if (type.equals("witchRound")) {
+                String subRound = responseJson.getJSONObject("data").getString("round");
+                if (UserInfo.getUserInstance().getHost() && subRound.equals("witchPoisonRound")) {
+                    SoundPlayer.getInstance().playMusic("witch_poison");
+                }
+                if (UserInfo.getUserInstance().getRoleCode() == 4) {
+                    status = "witchRound";
+                    if (subRound.equals("witchPoisonRound")) {
+                        Log.d("myprocess", "poison");
+                        Message msg = GameFragment.getmHandler().obtainMessage();
+                        msg.what = 100000;
+                        msg.sendToTarget();
+                    }
+                }
+            } else if (type.equals("prophetRound")) {
+                if (UserInfo.getUserInstance().getRoleCode() == 3) {
+                    status = "prophetRound";
+                }
+                Log.d("myprocess", "seer");
+                if (UserInfo.getUserInstance().getHost()) {
+                    SoundPlayer.getInstance().playMusic("seer");
+                }
             } else if (type.equals("prophetResult") && UserInfo.getUserInstance().getRoleCode() == 3) {
                 JSONObject dataJson = responseJson.getJSONObject("data");
                 boolean isWolf = dataJson.getBoolean("isWolf");
@@ -150,6 +176,9 @@ public class EchoWebSocketListener extends WebSocketListener {
                 msg.sendToTarget();
             } else if (type.equals("dead")) {
                 status = "dead";
+                if (UserInfo.getUserInstance().getHost()) {
+                    SoundPlayer.getInstance().playMusic("open_eyes");
+                }
                 JSONObject dataJson = responseJson.getJSONObject("data");
                 dead1 = dataJson.getInt("u1");
                 dead2 = dataJson.getInt("u2");
