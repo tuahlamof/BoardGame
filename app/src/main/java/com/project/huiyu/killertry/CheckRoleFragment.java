@@ -9,13 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 public class CheckRoleFragment extends Fragment {
 
-    private ImageView roleCard;
+    private ImageButton roleCard;
+    private TextView roleCardText;
+    private boolean isBack = true;
 
     public CheckRoleFragment() {
         // Required empty public constructor
@@ -38,21 +41,37 @@ public class CheckRoleFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_check_role, container, false);
-        int roleCode = UserInfo.getUserInstance().getRoleCode();
-        //int roleCode = 4;
-        roleCard = (ImageView) view.findViewById(R.id.role_card);
-        if (roleCode == 1) {
-            roleCard.setImageDrawable(getResources().getDrawable(R.drawable.townfolks));
-        } else if (roleCode == 2) {
-            roleCard.setImageDrawable(getResources().getDrawable(R.drawable.wifi_reconnect));
-        } else if (roleCode == 3){
-            roleCard.setImageDrawable(getResources().getDrawable(R.drawable.fortune_teller));
-        } else if (roleCode == 4) {
-            roleCard.setImageDrawable(getResources().getDrawable(R.drawable.witch));
-        } else {
-            roleCard.setImageDrawable(getResources().getDrawable(R.drawable.defender));
-        }
-        //roleCard.setText(roleCode);
+        final int roleCode = UserInfo.getUserInstance().getRoleCode();
+        roleCard = (ImageButton) view.findViewById(R.id.role_card);
+        roleCardText = (TextView) view.findViewById(R.id.role_card_text);
+
+        roleCard.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    if (isBack) {
+                        if (roleCode == 1) {
+                            roleCard.setBackground(getResources().getDrawable(R.drawable.townfolks));
+                            roleCardText.setText("Town Folk");
+                        } else if (roleCode == 2) {
+                            roleCard.setBackground(getResources().getDrawable(R.drawable.wifi_reconnect));
+                            roleCardText.setText("Werewolf");
+                        } else if (roleCode == 3){
+                            roleCard.setBackground(getResources().getDrawable(R.drawable.fortune_teller));
+                            roleCardText.setText("Prophet");
+                        } else if (roleCode == 4) {
+                            roleCard.setBackground(getResources().getDrawable(R.drawable.witch));
+                            roleCardText.setText("Witch");
+                        } else {
+                            roleCard.setBackground(getResources().getDrawable(R.drawable.defender));
+                            roleCardText.setText("Guard");
+                        }
+                    } else {
+                        roleCard.setBackground(getResources().getDrawable(R.drawable.card_back));
+                        roleCardText.setText("Tap to check your role");
+                    }
+                    isBack = !isBack;
+                }
+        });
         return view;
     }
 
