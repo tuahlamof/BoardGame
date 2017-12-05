@@ -13,11 +13,16 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class DisplayWaitingActivity extends AppCompatActivity {
 
     private static Button startButton;
     private static TextView hostStartGame;
     private static Button enterButton;
+    private static CirclePgBar pgBar;
+    private static ArrayList<TextView> nameList = new ArrayList<>();
+    private static ArrayList<UserInfo> list;
     private static Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -26,6 +31,8 @@ public class DisplayWaitingActivity extends AppCompatActivity {
             } else if (msg.what == 2) {
                 hostStartGame.setVisibility(View.VISIBLE);
                 enterButton.setVisibility(View.VISIBLE);
+            } else if (msg.what == 3) {
+                updateInfo();
             }
         }
     };
@@ -45,6 +52,7 @@ public class DisplayWaitingActivity extends AppCompatActivity {
                 enterTheGame();
             }
         });
+
         startButton.setVisibility(View.INVISIBLE);
         hostStartGame = findViewById(R.id.host_start_the_game);
         hostStartGame.setVisibility(View.INVISIBLE);
@@ -56,6 +64,41 @@ public class DisplayWaitingActivity extends AppCompatActivity {
             }
         });
         enterButton.setVisibility(View.INVISIBLE);
+        pgBar = findViewById(R.id.pg_bar);
+
+        TextView v1 = findViewById(R.id.player_item_name1);
+        nameList.add(v1);
+        TextView v2 = findViewById(R.id.player_item_name2);
+        nameList.add(v2);
+        TextView v3 = findViewById(R.id.player_item_name3);
+        nameList.add(v3);
+        TextView v4 = findViewById(R.id.player_item_name4);
+        nameList.add(v4);
+        TextView v5 = findViewById(R.id.player_item_name5);
+        nameList.add(v5);
+        TextView v6 = findViewById(R.id.player_item_name6);
+        nameList.add(v6);
+        TextView v7 = findViewById(R.id.player_item_name7);
+        nameList.add(v7);
+        TextView v8 = findViewById(R.id.player_item_name8);
+        nameList.add(v8);
+        TextView v9 = findViewById(R.id.player_item_name9);
+        nameList.add(v9);
+        updateInfo();
+    }
+    private static void updateInfo() {
+        list = UserInfo.getUsersArray();
+        for (int i = 0; i < 9; i++) {
+            if (i < list.size()) {
+                String name = list.get(i).getNickName();
+                nameList.get(i).setText(name);
+            } else {
+                nameList.get(i).setText("empty");
+            }
+        }
+        CirclePgBar.mProgress = CirclePgBar.mTargetProgress;
+        CirclePgBar.mTargetProgress = 1 + list.size() * 11;
+        pgBar.invalidate();
 
     }
     private void startTheGame() {

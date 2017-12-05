@@ -3,7 +3,7 @@ package com.project.huiyu.killertry;
 import java.util.ArrayList;
 
 public class UserInfo {
-    private String nickName;
+    private String nickName = "me";
     private int id;
     private int roomNum;
     private int roleCode;
@@ -71,6 +71,7 @@ public class UserInfo {
     public static ArrayList<UserInfo> getUsersArray() {
         if (usersArray == null) {
             usersArray = new ArrayList<>();
+            //usersArray.add(getUserInstance());
         }
         return usersArray;
     }

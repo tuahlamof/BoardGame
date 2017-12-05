@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
 //                Intent intent = new Intent(context, GameActivity.class);
 //                startActivity(intent);
 
+//                Intent intent = new Intent(context, DisplayWaitingActivity.class);
+//                startActivity(intent);
+
                 LayoutInflater li = LayoutInflater.from(context);
                 View roomView = li.inflate(R.layout.roomnumdialog, null);
 

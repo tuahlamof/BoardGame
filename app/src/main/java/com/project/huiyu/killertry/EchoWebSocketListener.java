@@ -88,6 +88,7 @@ public class EchoWebSocketListener extends WebSocketListener {
                     Log.d("mydebugger", "id: " + one.getId() + " name: " + one.getNickName() + " seat: " + one.getSeatId());
                 }
             } else if (type.equals("roomUserUpdate")) {
+
                 JSONObject newUser = responseJson.getJSONObject("data");
                 int newId = newUser.getInt("id");
                 String newName = newUser.getString("name");
@@ -100,6 +101,10 @@ public class EchoWebSocketListener extends WebSocketListener {
                     newUserInfo.setSeatId(newSeatId);
                     UserInfo.getUsersArray().add(newUserInfo);
                 }
+                Thread.sleep(400);
+                Message msg = DisplayWaitingActivity.getmHandler().obtainMessage();
+                msg.what = 3;
+                msg.sendToTarget();
             } else if (type.equals("readyToStart")) {
                 if (UserInfo.getUserInstance().getHost()) {
                     Message msg = DisplayWaitingActivity.getmHandler().obtainMessage();
