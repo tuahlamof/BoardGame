@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.glomadrian.codeinputlib.CodeInput;
+
 import org.json.JSONObject;
 
 import okhttp3.OkHttpClient;
@@ -44,14 +46,16 @@ public class MainActivity extends AppCompatActivity {
                 View roomView = li.inflate(R.layout.roomnumdialog, null);
 
                 AlertDialog.Builder roomNumberBuilder = new AlertDialog.Builder(context);
-                final EditText nickName = (EditText)roomView.findViewById(R.id.nickNameInput);
-                final EditText roomNum = (EditText)roomView.findViewById(R.id.roomNumberInput);
+                final EditText nickName = (EditText) roomView.findViewById(R.id.nick_name);
+                final CodeInput roomNum = (CodeInput)roomView.findViewById(R.id.room_number);
                 roomNumberBuilder.setView(roomView);
                 roomNumberBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        //Log.d("Mydebugger", nickName.getCode().length + "");
                         UserInfo.getUserInstance().setNickName(nickName.getText().toString());
-                        UserInfo.getUserInstance().setRoomNum(Integer.valueOf(roomNum.getText().toString()));
+                        //Log.d("Mydebugger", nickName.getCode().length + "");
+                        UserInfo.getUserInstance().setRoomNum(Integer.valueOf(makeString(roomNum.getCode())));
                         try {
                             enterTheRoom(UserInfo.getUserInstance().getRoomNum(), UserInfo.getUserInstance().getNickName());
                         } catch (Exception e) {
@@ -103,5 +107,12 @@ public class MainActivity extends AppCompatActivity {
         EchoWebSocketListener.getWsInstance().send(joinRoomJson.toString());
 
         Log.d("Mydebugger", "RoomNum " + roomNum + " " + name);
+    }
+    private String makeString(Character[] arr) {
+        StringBuilder sb = new StringBuilder();
+        for (char ch : arr) {
+            sb.append(ch);
+        }
+        return sb.toString();
     }
 }
