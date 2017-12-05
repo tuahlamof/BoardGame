@@ -15,7 +15,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/man1mdpi" />
         <TextView
             android:id="@+id/player1_name"
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/man2mdpi" />
         <TextView
             android:id="@+id/player2_name"
             android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/woman4mdpi" />
         <TextView
             android:id="@+id/player3_name"
             android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/man3mdpi" />
         <TextView
             android:id="@+id/player4_name"
             android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/woman1mdpi" />
         <TextView
             android:id="@+id/player5_name"
             android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/woman2mdpi" />
         <TextView
             android:id="@+id/player6_name"
             android:layout_width="wrap_content"
@@ -118,7 +118,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/woman3mdpi" />
         <TextView
             android:id="@+id/player7_name"
             android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/man5mdpi" />
         <TextView
             android:id="@+id/player8_name"
             android:layout_width="wrap_content"
@@ -152,7 +152,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_home_black_24dp" />
+            android:src="@drawable/woman4mdpi" />
         <TextView
             android:id="@+id/player9_name"
             android:layout_width="wrap_content"
