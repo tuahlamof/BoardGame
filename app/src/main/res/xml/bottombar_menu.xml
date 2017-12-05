@@ -3,13 +3,13 @@
     <tab
         id="@+id/tab_role"
         title="Role"
-        icon="@drawable/ic_home_black_24dp"
+        icon="@drawable/role_check"
         barColorWhenSelected="#FE3D81"
         />
     <tab
         id="@+id/tab_game"
         title="Game"
-        icon="@drawable/ic_home_black_24dp"
+        icon="@drawable/game_board"
         barColorWhenSelected="#5D3C35"
         />
 </tabs>
